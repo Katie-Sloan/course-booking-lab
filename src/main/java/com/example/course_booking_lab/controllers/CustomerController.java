@@ -18,7 +18,14 @@ public class CustomerController {
     CustomerRepository customerRepository;
 
     @GetMapping(value="/customers")
-    public ResponseEntity getAlCustomersAndFilters(){
+    public ResponseEntity getAllCustomersAndFilters(
+            @RequestParam(required=false, name="town") String town,
+            @RequestParam(required=false, name="bookingsCourseName") String name
+            ){
+        if (town != null && name != null){
+            List<Customer> foundCustomers = customerRepository.findByTownAndBookingsCourseName(town, name);
+            return new ResponseEntity(foundCustomers, HttpStatus.OK);
+        }
         return new ResponseEntity(customerRepository.findAll(), HttpStatus.OK);
     }
 
