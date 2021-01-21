@@ -10,4 +10,7 @@ public class CourseBookingLabApplication {
 		SpringApplication.run(CourseBookingLabApplication.class, args);
 	}
 
+
+
+
 }

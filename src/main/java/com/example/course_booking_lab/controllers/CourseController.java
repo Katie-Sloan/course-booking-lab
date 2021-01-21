@@ -19,7 +19,12 @@ public class CourseController {
     // getAll getOne Create Update Delete
 
     @GetMapping(value="/courses")
-    public ResponseEntity getAlCoursesAndFilters(){
+    public ResponseEntity getAlCoursesAndFilters(
+            @RequestParam(required = false, name="starRating") Integer starRating
+    ){
+        if (starRating != null){
+            return new ResponseEntity(courseRepository.findByStarRating(starRating), HttpStatus.OK);
+        }
         return new ResponseEntity(courseRepository.findAll(), HttpStatus.OK);
     }
 
