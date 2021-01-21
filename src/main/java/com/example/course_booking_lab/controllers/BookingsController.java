@@ -21,7 +21,10 @@ public class BookingsController {
 // getAll getOne Create Update Delete
 
     @GetMapping(value="/bookings")
-    public ResponseEntity getAllBookingsAndFilters(){
+    public ResponseEntity getAllBookingsAndFilters(@RequestParam(required=false, name="date") String date){
+        if (date != null){
+            return new ResponseEntity(bookingsRepository.findByDate(date), HttpStatus.OK);
+        }
         return new ResponseEntity(bookingsRepository.findAll(), HttpStatus.OK);
     }
 

@@ -1,5 +1,6 @@
 package com.example.course_booking_lab;
 
+import com.example.course_booking_lab.models.Booking;
 import com.example.course_booking_lab.models.Course;
 import com.example.course_booking_lab.models.Customer;
 import com.example.course_booking_lab.repositories.BookingsRepository;
@@ -39,6 +40,10 @@ public class CourseBookingLabApplicationTests {
 		assertEquals("Software Development", foundCourses.get(0).getName());
 	}
 
-
+	@Test
+	public void canFindBookingsByBookingDate(){
+		List<Booking> foundBookings = bookingsRepository.findByDate("01-02-2021");
+		assertEquals(3, foundBookings.size());
+	}
 
 }
